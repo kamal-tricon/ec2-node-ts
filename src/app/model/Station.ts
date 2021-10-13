@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 import { StationDocument } from '../interface/station-document';
 const stationSchema = new mongoose.Schema({
     stationName: String,

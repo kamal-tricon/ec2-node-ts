@@ -1,4 +1,5 @@
-import express, { Router } from 'express';
+import * as express  from 'express';
+import { Router } from 'express';
 import { Station } from '../model/Station';
 import { Train } from '../model/Train';
 import {User} from '../model/User';

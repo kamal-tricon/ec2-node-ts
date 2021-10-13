@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 import { TrainDocument } from '../interface/train-document';
 
 const trainSchema = new mongoose.Schema({

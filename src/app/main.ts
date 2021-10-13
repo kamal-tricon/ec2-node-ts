@@ -1,10 +1,10 @@
-import express from "express";
+import express = require('express');
 import http from 'http';
 import {Routers} from "./router/app.routing";
 import cors from 'cors';
 import { mongooseConnector } from "./mongoose";
-import bodyParser from "body-parser";
-import mongoose from 'mongoose';
+import * as bodyParser from "body-parser";
+import * as mongoose from 'mongoose';
 
 export class Main {
     private readonly app: express.Application;
