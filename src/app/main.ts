@@ -1,7 +1,7 @@
 import express = require('express');
-import http from 'http';
+import * as http from 'http';
 import {Routers} from "./router/app.routing";
-import cors from 'cors';
+// import cors from 'cors';
 import { mongooseConnector } from "./mongoose";
 import * as bodyParser from "body-parser";
 import * as mongoose from 'mongoose';
