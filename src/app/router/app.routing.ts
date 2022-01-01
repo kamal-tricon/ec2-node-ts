@@ -1,5 +1,6 @@
 import * as express  from 'express';
 import { Router } from 'express';
+import { Quiz } from '../model/Quiz';
 import { Station } from '../model/Station';
 import { Train } from '../model/Train';
 import {User} from '../model/User';
@@ -22,7 +23,7 @@ export class Routers {
 
         this.router.get('/name', (req, res) => {
             console.log('jihiuhuuyguuuuuu')
-            res.send('Rohit Sharma - '+req.query.prof)
+            res.send('Rohit huhug - '+req.query.prof)
         });
     }
 
@@ -121,6 +122,66 @@ export class Routers {
                 }
             } catch {
                 res.status(500).send("Could not add the train right now");
+            }
+        });
+
+        this.router.post('/savequizz', async (req, res) => {
+            console.log(req.body)
+            try {
+                const quiz = new Quiz(req.body);
+                quiz.save().then(() => {
+                    res.status(200).send('Quiz added successfully')
+                }).catch((err) => {
+                    res.status(400).send('Something went wrong')
+                })
+            } catch {
+                res.status(500).send("Could not add the quiz right now");
+            }
+        });
+
+        this.router.post('/updatequizz', async (req, res) => {
+            console.log(req.body)
+            try {
+                const quiz = await Quiz.findOneAndUpdate({_id: req.body.id}, 
+                    {
+                        $push: {
+                            questions: [...req.body.questions]
+                        }
+                    })
+                quiz.save().then(() => {
+                    res.status(200).send('Quiz updated successfully')
+                }).catch((err) => {
+                    res.status(400).send('Something went wrong')
+                })
+            } catch {
+                res.status(500).send("Could not add the quiz right now");
+            }
+        });
+
+        this.router.post('/getquizz', async (req, res) => {
+            const quiz = await Quiz.find({}, 'id title');
+            try {
+                res.status(200).send(quiz);
+            } catch {
+                res.status(500).send("Could not add the quiz right now");
+            }
+        });
+
+        this.router.post('/deletequiz', async (req, res) => {
+            try {
+                const quiz = await Quiz.deleteOne({_id: req.body.id});
+                res.status(200).send(quiz);
+            } catch {
+                res.status(500).send("Could not fetch the data right now");
+            }
+        });
+
+        this.router.post('/getquizzdetails', async (req, res) => {
+            const quiz = await Quiz.find({_id: req.body.id});
+            try {
+                res.status(200).send(quiz);
+            } catch {
+                res.status(500).send("Could not add the quiz right now");
             }
         });
     }

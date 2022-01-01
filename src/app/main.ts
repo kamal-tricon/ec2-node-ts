@@ -33,7 +33,7 @@ export class Main {
             console.error('Cannot connent to mongodb. '+ err)
         })
 
-        this.server = http.createServer(this.app).listen(3000, () => {
+        this.server = http.createServer(this.app).listen(4000, () => {
             console.log('App listening');
         })
     }
